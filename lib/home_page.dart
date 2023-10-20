@@ -1,6 +1,6 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:melolink/song_detail.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,19 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final assetsAudioPlayer = AssetsAudioPlayer();
-
   int index = 0;
-
-  urlSong() async {
-    try {
-      await assetsAudioPlayer.open(
-        Audio.network("http://www.mysite.com/myMp3file.mp3"),
-      );
-    } catch (t) {
-      //mp3 unreachable
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,80 +30,214 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search")
           ]),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                "assets/images/logoVertical.svg",
-                height: 80,
-                color: Colors.white,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 52,
-          ),
-          Container(
-            height: 380,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 2,
-                itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Container(
-                          height: 300,
-                          width: 220,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset("assets/images/strboy.jpeg"),
-                              Container(
-                                color: Colors.white,
-                                height: 1,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Column(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                SvgPicture.asset(
+                  "assets/images/logoVertical.svg",
+                  height: 80,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 52,
+            ),
+            Container(
+              height: 380,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 2,
+                  itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailPage()));
+                          },
+                          child: Container(
+                              height: 300,
+                              width: 220,
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'TOP SOLD',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: Color(0xffEF2F62),
-                                        fontWeight: FontWeight.bold),
+                                  Image.asset("assets/images/strboy.jpeg"),
+                                  Container(
+                                    color: Colors.white,
+                                    height: 1,
                                   ),
-                                  Text(
-                                    'Star Boy',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                  SizedBox(
+                                    height: 10,
                                   ),
-                                  Text(
-                                    'Weekend Song',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white.withOpacity(0.4),
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Owned By Lipsum.eth',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white.withOpacity(0.4),
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'TOP SOLD',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Color(0xffEF2F62),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Star Boy',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'RLP 2.3 Eth',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color:
+                                                Colors.white.withOpacity(0.4),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Price 198ETH',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color:
+                                                Colors.white.withOpacity(0.4),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  )
                                 ],
-                              )
-                            ],
-                          )),
-                    )),
-          ),
-        ],
+                              )),
+                        ),
+                      )),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Color(0xffEF2F62),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+
+            Container(
+              height: 140,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 3,
+                  itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                            color: Color(0xffEF2F62),
+                            height: 80,
+                            width: 110,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.piano,
+                                  size: 50,
+                                  color: Colors.white,
+                                )
+                              ],
+                            )),
+                      )),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Trending',
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Color(0xffEF2F62),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+
+            Container(
+              height: 380,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 2,
+                  itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Container(
+                            height: 300,
+                            width: 220,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset("assets/images/strboy.jpeg"),
+                                Container(
+                                  color: Colors.white,
+                                  height: 1,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'TOP SOLD',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xffEF2F62),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Star Boy',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'RLP 2.3 Eth',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white.withOpacity(0.4),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Price 198ETH',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white.withOpacity(0.4),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            )),
+                      )),
+            ),
+
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: Row(
+            //     children: [],
+            //   ),
+            // )
+          ],
+        ),
       ),
     );
   }
