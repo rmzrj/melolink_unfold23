@@ -1,10 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:melolink/songs.dart';
 import 'package:melolink/transction_page.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+  const DetailPage({super.key, required this.song,});
+  final Song song;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -49,7 +51,7 @@ class _DetailPageState extends State<DetailPage> {
 
   Future setAudio() async {
     audioPlayer.setReleaseMode(ReleaseMode.loop);
-    String url = "https://webaudioapi.com/samples/audio-tag/chrono.mp3";
+    String url = widget.song.srcUri;
     audioPlayer.setSourceUrl(url);
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:melolink/song_detail.dart';
+import 'package:melolink/songs.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 2,
+                  itemCount: songsData.length,
                   itemBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: GestureDetector(
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DetailPage()));
+                                    builder: (context) => DetailPage(song: songsData[index],)));
                           },
                           child: Container(
                               height: 300,
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image.asset("assets/images/strboy.jpeg"),
+                                  Image.asset(songsData[index].imgPath),
                                   Container(
                                     color: Colors.white,
                                     height: 1,
@@ -86,14 +87,14 @@ class _HomePageState extends State<HomePage> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'Star Boy',
+                                        songsData[index].title,
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'RLP 2.3 Eth',
+                                        songsData[index].singer,
                                         style: TextStyle(
                                             fontSize: 16,
                                             color:
@@ -101,7 +102,15 @@ class _HomePageState extends State<HomePage> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'Price 198ETH',
+                                        'RLP ${songsData[index].rlp}',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color:
+                                                Colors.white.withOpacity(0.4),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Price ${songsData[index].ePrice}',
                                         style: TextStyle(
                                             fontSize: 16,
                                             color:
