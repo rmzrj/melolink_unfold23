@@ -9,7 +9,7 @@ class TransactionDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(171719),
+      backgroundColor: Color(0xff171719),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -88,7 +88,7 @@ class TransactionDetails extends StatelessWidget {
                   child: Text('Buy now'),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        Color(171719).withOpacity(0.2)),
+                        Color(0xff171719).withOpacity(0.2)),
                   ),
                 ),
                 SizedBox(
@@ -99,7 +99,7 @@ class TransactionDetails extends StatelessWidget {
                   child: Text('Get the royality'),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                        Color(171719).withOpacity(0.2)),
+                        Color(0xff171719).withOpacity(0.2)),
                   ),
                 ),
               ],
@@ -108,7 +108,7 @@ class TransactionDetails extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Container(
                 width: double.infinity,
-                color: Color(171719).withOpacity(0.2),
+                color: Color(0xff171719).withOpacity(0.2),
                 child: Column(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),

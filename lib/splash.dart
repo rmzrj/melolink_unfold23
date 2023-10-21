@@ -21,7 +21,7 @@ class SplashPage extends StatelessWidget {
     splash(context);
 
     return Scaffold(
-      backgroundColor: Color(171719),
+      backgroundColor: Color(0xff171719),
       body: Center(
           child: Image.asset(
         'assets/images/logowhite.png',
