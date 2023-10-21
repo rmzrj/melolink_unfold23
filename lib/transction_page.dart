@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:melolink/songs.dart';
 
 class TransactionDetails extends StatelessWidget {
-  const TransactionDetails({super.key});
+  const TransactionDetails({super.key, required this.song});
+  final Song song;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class TransactionDetails extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'THE WEEKEND',
+                            song.singer,
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -44,7 +46,7 @@ class TransactionDetails extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Star boy',
+                        song.title,
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -57,7 +59,7 @@ class TransactionDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Weekend Song',
+                        '${song.title} Song',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.4),
                         ),
@@ -73,7 +75,7 @@ class TransactionDetails extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset('assets/images/strboy.jpeg'),
+            Image.asset(song.imgPath),
             SizedBox(
               height: 20,
             ),

@@ -52,76 +52,8 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: songsData.length,
-                  itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DetailPage(song: songsData[index],)));
-                          },
-                          child: Container(
-                              height: 300,
-                              width: 220,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.asset(songsData[index].imgPath),
-                                  Container(
-                                    color: Colors.white,
-                                    height: 1,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'TOP SOLD',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0xffEF2F62),
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        songsData[index].title,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        songsData[index].singer,
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color:
-                                                Colors.white.withOpacity(0.4),
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'RLP ${songsData[index].rlp}',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color:
-                                                Colors.white.withOpacity(0.4),
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'Price ${songsData[index].ePrice}',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color:
-                                                Colors.white.withOpacity(0.4),
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              )),
-                        ),
+                  itemBuilder: (context, index) => SliderTile(
+                        song: songsData[index],
                       )),
             ),
 
@@ -184,58 +116,9 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 2,
-                  itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                            height: 300,
-                            width: 220,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset("assets/images/strboy.jpeg"),
-                                Container(
-                                  color: Colors.white,
-                                  height: 1,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'TOP SOLD',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xffEF2F62),
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'Star Boy',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'RLP 2.3 Eth',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white.withOpacity(0.4),
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'Price 198ETH',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white.withOpacity(0.4),
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )),
+                  itemCount: 3,
+                  itemBuilder: (context, index) => SliderTile(
+                        song: songsData[index],
                       )),
             ),
 
@@ -247,6 +130,84 @@ class _HomePageState extends State<HomePage> {
             // )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SliderTile extends StatelessWidget {
+  const SliderTile({super.key, required this.song});
+  final Song song;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailPage(
+                        song: song,
+                      )));
+        },
+        child: Container(
+            height: 300,
+            width: 220,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(song.imgPath),
+                Container(
+                  color: Colors.white,
+                  height: 1,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'TOP SOLD',
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xffEF2F62),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      song.title,
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      song.singer,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white.withOpacity(0.4),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'RLP ${song.rlp}',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white.withOpacity(0.4),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Price ${song.ePrice}',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white.withOpacity(0.4),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )
+              ],
+            )),
       ),
     );
   }

@@ -40,4 +40,13 @@ List<Song> songsData = [
       imgPath: "assets/images/Weekend.jpeg",
       rlp: '6.3 ETH',
       ePrice: '30 ETH'),
+
+      Song(
+      srcUri:
+          "https://bafybeigybjdxfvpvqe2eezgkn3ng5qdkpnt3edxnrtnvcwrcgd2mp4br54.ipfs.sphn.link/spotifydown.com%20-%20White%20Walls%20(feat.%20ScHoolboy%20Q%20%26%20Hollis).mp3",
+      title: "White Walls",
+      singer: "Lewis",
+      imgPath: "assets/images/White_Walls.jpg",
+      rlp: '9.3 ETH',
+      ePrice: '290 ETH'),
 ];

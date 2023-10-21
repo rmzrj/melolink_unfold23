@@ -5,7 +5,10 @@ import 'package:melolink/songs.dart';
 import 'package:melolink/transction_page.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key, required this.song,});
+  const DetailPage({
+    super.key,
+    required this.song,
+  });
   final Song song;
 
   @override
@@ -108,7 +111,7 @@ class _DetailPageState extends State<DetailPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset("assets/images/strboy.jpeg"),
+                        Image.asset(widget.song.imgPath),
                         Container(
                           color: Colors.white,
                           height: 1,
@@ -127,21 +130,28 @@ class _DetailPageState extends State<DetailPage> {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Star Boy',
+                              widget.song.title,
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'RLP 2.3 Eth',
+                              widget.song.singer,
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white.withOpacity(0.4),
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Price 198ETH',
+                              'RLP ${widget.song.rlp}',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white.withOpacity(0.4),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'Price ${widget.song.ePrice}',
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white.withOpacity(0.4),
@@ -192,12 +202,12 @@ class _DetailPageState extends State<DetailPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => TransactionDetails()));
+                          builder: (context) => TransactionDetails(song: widget.song,)));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset('assets/images/strboy.jpeg'),
+                    Image.asset(widget.song.imgPath),
                     Row(
                       children: [
                         Column(
@@ -211,12 +221,12 @@ class _DetailPageState extends State<DetailPage> {
                                   fontSize: 10),
                             ),
                             Text(
-                              '251 ETH',
+                              widget.song.rlp,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16),
                             ),
                             Text(
-                              '\$ 404757.58',
+                              widget.song.ePrice,
                               style: TextStyle(
                                   color: Colors.white.withOpacity(0.4),
                                   fontSize: 10),

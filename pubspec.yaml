@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.7
   audioplayers: ^5.2.0
+  push_restapi_dart: ^0.0.2-alpha
   # flutter_neumorphic: ^3.2.0
 
 
