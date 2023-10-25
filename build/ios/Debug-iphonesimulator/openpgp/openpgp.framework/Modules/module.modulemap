@@ -1,0 +1,6 @@
+framework module openpgp {
+  umbrella header "openpgp-umbrella.h"
+
+  export *
+  module * { export * }
+}
